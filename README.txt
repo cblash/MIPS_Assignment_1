@@ -1,11 +1,13 @@
-The purpose of the first commit was to see if I was able to simply take a user input and output it accordingly.
-After seeing this possibility I wanted to see if I could simply out put certain parts of the string input.
-While I didn't accomplish this for my second commit I was able to observe several critical aspects of what needs to be done in my code
-The first being that the string is stored in data and not the register itself something which I found confusing and am still not completely clear on.
-The second observation I made was that when outputting an integer, (which is what the will do at the end), it output what is stored in the register, not what is stored in data.
-Third, the first character typed by the user for the string goes into the lowest byte of memory
-While my code now hasn't changed much and doesn't really accomplish anything the changed lines are merely there to observe the processing of data.
-I have also formed somewhat of an algorithm and plan to expand it at a latter time
+##NOTE: cblash208 is my personal github account made before taking this class while cblash was one I made specifically with my bison e-mail. 
+##      I had accidentally made my first commit with cblash208 rather cblash due to confusion in command prompt.
+
+For this third commit, changes were mostly made in code
+A second mips file, main1, was made for actual big changes to the code while main is kept solely to find corresponding byte values of certain characters and for other observations
+Things that still need to be done
+1. Properly handling whitespace
+2. Hexadecimal values a-f
+3. properly converting previously pulled hex digits to the right exponent.
+4. completing a coherent in code loop
 
 Algorithm (in-progress):
 1. read user input

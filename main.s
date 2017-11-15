@@ -7,10 +7,10 @@ main:
 	la $a0, str	#load space into call variable
 	li $a1, 9	#allow input buffer size of 9 bytes
 	syscall		#call for user input
-#testing segment
-	li $v0, 1	#syscall code for outputting string in $a0
-	lb $t0, 0($a0)
-	li $a0, 0
-	syscall		#print string revceived from user
+	lw $t0, 0($a0)
+	lw $t1, 4($a0)
+loop0:
+	lb $t2, 0($t0)
+	
 	li $v0, 10
 	syscall		#exit program
