@@ -1,27 +1,23 @@
 ##NOTE: cblash208 is my personal github account made before taking this class while cblash was one I made specifically with my bison e-mail. 
 ##      I had accidentally made my first commit with cblash208 rather cblash due to confusion in command prompt.
 
-I reviewed with others on using the right powers of 16 in my final sum and found that multiplying the sum by 16 everytime before adding the most recent byte to the sum works
-Here's why:
-example hex number input
-4216
-this equates to
-4*(16^3) + 2*(16^2) + 1*(16^1) + 6(16^0)
-In memory this nummber is stored big endian (noted back in first commit)therefore,
-when reading bytes with (load byte) instruction the most significant number is taken first, checked and add to a sum
-so after the first addition, the sum can be expressed as
-0*16 + 4
-after the second addition
-16(0*16 + 4) + 2 = 0 + 4*16 + 2
-after the third
-16(4*16 + 2) + 1 = 4*(16^2) + 2*(16^1) + 1*(16^0)
-and so on until NULL is read in and addition stops
+**********************************
+be sure to only test my final product, hex_to_decimal.s,
+the others named main and main1 were what I progressively worked on in differnt versions
+Please refer to the old versions of my README.txt to see my various thought processes
+**********************************
+
+After finishing my assignment I now see that preparing your pseudo-code/algorithm is the best way to translate miscellaneous thoughts to actual working code
+I still found myself in my personal old habit of constructing most of the code to completion and then testing the end result, rather running tests on specific parts
+I'd like to think my TA Shrij for proposing the idea of dividing the final lump sum by ten and displaying quotient and remainder beside eachother
+That saved me quite a bit of time on figuring out how to display numbers with 1 as most significant bit.
+ 
 
 ++++++++++++++++++++++
 Algorithm :
 ++++++++++++++++++++++
 1. read user input
-2. take out and identify most recent character or byte
+2. take out and identify lowest character or byte
 3. Add that byte's hexadecimal amount to a total if valid hexadecimal digit
 	a. otherwise handle it differently as whitespace, newline, NULL, or invalid byte
 4. repeat two and three until NULL, invalid byte, or an incorrect combination of whitespace and valid hexadecimal digits is encountered
@@ -29,6 +25,7 @@ Algorithm :
 5. Store the total in $a0
 6. Output that total using integer system call
 ++++++++++++++++++++++
+
 
 +++++++++++++++++++++++++++
 Pseudo Code
@@ -66,8 +63,8 @@ else if (value is newline)
 else if (Value is Null or 0)
 	if (hex number has been read = true)
 		display sum, exit program
-	else  ##########THIS SHOULDN'T HAPPEN
-		exit program
+	else
+		display error message, exit program
 else   ## Value is invalid
 	display error message, exit program
 ++++++++++++++++++++++++++++++++++
