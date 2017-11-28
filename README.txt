@@ -1,3 +1,10 @@
+##MISTAKES WERE MADE
+##And fixed I think
+
+The MIPS code before only worked in MARS 4.5 compiler
+The code I have currently should work for QtSPIM
+Thanks to my TAs for letting me know before I received a big fat zero.
+
 ##NOTE: cblash208 is my personal github account made before taking this class while cblash was one I made specifically with my bison e-mail. 
 ##      I had accidentally made my first commit with cblash208 rather cblash due to confusion in command prompt.
 
@@ -6,12 +13,6 @@ be sure to only test my final product, hex_to_decimal.s,
 the others named main and main1 were what I progressively worked on in differnt versions
 Please refer to the old versions of my README.txt to see my various thought processes
 **********************************
-
-After finishing my assignment I now see that preparing your pseudo-code/algorithm is the best way to translate miscellaneous thoughts to actual working code
-I still found myself in my personal old habit of constructing most of the code to completion and then testing the end result, rather running tests on specific parts
-I'd like to think my TA Shrij for proposing the idea of dividing the final lump sum by ten and displaying quotient and remainder beside eachother
-That saved me quite a bit of time on figuring out how to display numbers with 1 as most significant bit.
- 
 
 ++++++++++++++++++++++
 Algorithm :

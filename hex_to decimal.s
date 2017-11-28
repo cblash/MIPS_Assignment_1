@@ -2,7 +2,7 @@
 str:	.space 9 	#allocates uninitialized 9 bytes of information for string including NULL character
 error:	.asciiz "Invalid hexadecimal number."	#error message to be displayed if input string found to be invalid
 .text			#code portion for instructions
-User_Input: 
+main: 
 	li $v0, 8	#syscall code for reading in strings
 	la $a0, str	#load space into call variable
 	li $a1, 9	#allow input buffer size of 9 bytes
@@ -22,7 +22,8 @@ check_value1:
 af_range:
 	slti $t1, $t0, 97	#check if byte from input is less than 97, decimal value of 'a'
 	bne $t1, $zero, check_value2	#if byte is less than 97, proceed to check for invalid byte values between A-F and a-f
-	subi $t2, $t0, 87	#if byte is between 97 and 102, obtain the true value of the hex number between 'a' and 'f'
+	addi $t6, $zero, 87
+	sub $t2, $t0, $t6	#if byte is between 97 and 102, obtain the true value of the hex number between 'a' and 'f'
 	j sum_check1		#proceed to add value to total sum
 check_value2:
 	slti $t1, $t0, 71	#check if byte from input is less than 71. the range of characters 'A' through 'F' is 65-70
@@ -31,7 +32,8 @@ check_value2:
 AF_range:
 	slti $t1, $t0, 65	#check if byte from input is less than 65, decimal value of 'A'
 	bne $t1, $zero, check_value3	#if byte is less than 65, proceed to check for invalid byte values between 0-9 and A-F
-	subi $t2, $t0, 55	#if byte is between 65 and 70, obtain the true value of the hex number between 'A' and 'F'
+	addi $t6, $zero, 55
+	sub $t2, $t0, $t6	#if byte is between 65 and 70, obtain the true value of the hex number between 'A' and 'F'
 	j sum_check1	 	#proceed to add value to total sum
 check_value3:
 	slti $t1, $t0, 58	#check if byte from input is less than 58. the range of characters '0' through '9' is 48-57
@@ -40,14 +42,18 @@ check_value3:
 digit_range:
 	slti $t1, $t0, 48	#check if byte from input is less than 48, decimal value of '0'
 	bne $t1, $zero, low_range	#if less than 48, proceed to lower range of deicmal values
-	subi $t2, $t0, 48	#find hexadecimal value of current byte from input
+	addi $t6, $zero, 48
+	sub $t2, $t0, $t6	#find hexadecimal value of current byte from input
 	j sum_check1		#proceed to sum hexadecimal value into total
 low_range:
-	subi $t3, $t0, 32		#check to see if the decimal value of the byte 32, the value of space key, via subtraction
+	addi $t6, $zero, 32
+	sub $t3, $t0, $t6		#check to see if the decimal value of the byte 32, the value of space key, via subtraction
 	beq $t3, $zero, white_space	#if the above difference is zero, then handle the byte as white space
-	subi $t3, $t0, 9		#check to see if the decimal value of the byte 9, the value of tab key, via subtraction
+	addi $t6, $zero, 9
+	sub $t3, $t0, $t6		#check to see if the decimal value of the byte 9, the value of tab key, via subtraction
 	beq $t3, $zero, white_space	#if the above difference is zero, then handle the byte as white space
-	subi $t3, $t0, 10		#check to see if the decimal value of the byte 10, the value of enter key, via subtraction
+	addi $t6, $zero, 10
+	sub $t3, $t0, $t6		#check to see if the decimal value of the byte 10, the value of enter key, via subtraction
 	beq $t3, $zero, newline_char	#if the above difference is zero, then handle the byte as a newline character
 	beq $t0, $zero, null_byte	#Finally, if $t0, the byte read in, is zero it is a null, end of string character
 	j invalid			#if none of the above are true, proceed to invalid output
